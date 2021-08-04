@@ -1,15 +1,55 @@
 export interface AppState {
-    width: number,
-    height: number
+    people: any[],
+    isLoadPeople: boolean,
+    errorPeople: string,
+    planets: any[],
 }
 
-const initState = {
-  width: 0,
-  height: 0,
+const initState: AppState = {
+  people: [],
+  isLoadPeople: false,
+  errorPeople: '',
+  planets: [],
 };
 
 export const appReducer = (state: AppState = initState, action: any) => {
-  switch (action) {
+  switch (action.type) {
+    case 'LOAD_PEOPLE': {
+      return {
+        ...state,
+        isLoadPeople: true,
+      };
+    }
+
+    case 'SET_PEOPLE': {
+      const {payload} = action;
+
+      return {
+        ...state,
+        people: payload,
+        isLoadPeople: false,
+      };
+    }
+
+    case 'ERROR_PEOPLE': {
+      const {payload} = action;
+
+      return {
+        ...state,
+        isLoadPeople: false,
+        errorPeople: payload,
+      };
+    }
+
+    case 'SET_PLANETS': {
+      const {payload} = action;
+
+      return {
+        ...state,
+        planets: payload,
+      };
+    }
+
     default:
       return state;
   }

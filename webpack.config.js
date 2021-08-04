@@ -27,7 +27,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'src'),
     watchContentBase: true,
     port: 3000,
-    hot: isDev,
+    hot: true,
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],

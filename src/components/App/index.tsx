@@ -1,9 +1,6 @@
 import React, {FC, ReactElement, useCallback, useState} from 'react';
-import {Provider} from 'react-redux';
-import {
-  Layout,
-  Menu,
-} from 'antd';
+import {Provider, useDispatch} from 'react-redux';
+import {Layout, Menu} from 'antd';
 import {
   PieChartOutlined,
   DesktopOutlined,
@@ -26,6 +23,7 @@ const App: FC<AppProps> = (props: AppProps): ReactElement => {
   const onCollapsed = (): void => {
     setCollapsed(!collapsed);
   };
+  const dispatch = useDispatch();
 
   return (
     <Provider store={store}>
@@ -36,17 +34,13 @@ const App: FC<AppProps> = (props: AppProps): ReactElement => {
             <Menu.Item key="1" icon={<PieChartOutlined />}>
               Option 1
             </Menu.Item>
-            <Menu.Item key="2" icon={<DesktopOutlined />}>
-              Option 2
-            </Menu.Item>
-            <Menu.Item key="9" icon={<FileOutlined />}>
-              Files
-            </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{padding: 0}} />
           <Content style={{margin: '0 16px'}}>
+            <button onClick={() => dispatch({type: 'LOAD_PEOPLE'})}>test
+            </button>
           </Content>
         </Layout>
       </Layout>
